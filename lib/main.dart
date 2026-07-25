@@ -33,8 +33,10 @@ class AnaSayfa extends StatefulWidget {
 class _AnaSayfaState extends State<AnaSayfa> {
 
   final List<Map<String, dynamic>> kelimeler = [
+
     {
       "kelime": "SENATO",
+      "zorluk": "Zor",
       "tanimlar": [
         "Bazı ülkelerde yasama organının üst kanadı olarak görev yapan meclis.",
         "İki meclisli parlamentolarda üst meclis olarak görev yapan yasama organı."
@@ -43,6 +45,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
     {
       "kelime": "DEMOKRASİ",
+      "zorluk": "Orta",
       "tanimlar": [
         "Halkın yönetime katıldığı yönetim biçimi.",
         "Vatandaşların siyasi haklara sahip olduğu sistem."
@@ -51,18 +54,21 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
     {
       "kelime": "GALAKSİ",
+      "zorluk": "Zor",
       "tanimlar": [
         "Milyarlarca yıldız, gaz ve tozdan oluşan büyük uzay sistemi.",
-        "Evren içinde bulunan dev yıldız topluluklarından biri."
+        "Uzayda bulunan büyük yıldız topluluklarından biri."
       ]
     },
+
   ];
 
 
   String kelime = "";
+  String zorluk = "";
   List<String> tanimlar = [];
 
-  bool tumTanımlar = false;
+  bool tumTanimlar = false;
 
 
   @override
@@ -80,16 +86,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
     setState(() {
 
       kelime = secilen["kelime"];
+      zorluk = secilen["zorluk"];
 
       tanimlar =
       List<String>.from(secilen["tanimlar"]);
 
-      tumTanımlar = false;
+      tumTanimlar = false;
 
     });
+
   }
-
-
   @override
   Widget build(BuildContext context) {
 
@@ -112,11 +118,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
 
             Card(
-
               elevation:5,
 
               child: Padding(
-
                 padding: const EdgeInsets.all(25),
 
                 child: Column(
@@ -128,6 +132,17 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       style: const TextStyle(
                         fontSize:30,
                         fontWeight: FontWeight.bold,
+                      ),
+                    ),
+
+
+                    const SizedBox(height:10),
+
+
+                    Text(
+                      "🎯 Zorluk: $zorluk",
+                      style: const TextStyle(
+                        fontSize:16,
                       ),
                     ),
 
@@ -147,31 +162,34 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     const SizedBox(height:15),
 
 
-                    if (!tumTanımlar)
+                    if (!tumTanimlar)
+
                       Text(
                         tanimlar[0],
                         style: const TextStyle(
                           fontSize:17,
                         ),
+                        textAlign: TextAlign.center,
                       ),
 
 
-                    if (tumTanımlar)
+                    if (tumTanimlar)
 
                       ...List.generate(
                         tanimlar.length,
-                            (index) {
+                        (index) {
 
                           return Padding(
 
                             padding:
-                            const EdgeInsets.only(bottom:10),
+                            const EdgeInsets.only(bottom:12),
 
                             child: Text(
-                              "${index+1}. ${tanimlar[index]}",
+                              "${index + 1}. ${tanimlar[index]}",
                               style: const TextStyle(
                                 fontSize:17,
                               ),
+                              textAlign: TextAlign.center,
                             ),
 
                           );
@@ -183,14 +201,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     const SizedBox(height:20),
 
 
-                    if (!tumTanımlar && tanimlar.length > 1)
+                    if (!tumTanimlar && tanimlar.length > 1)
 
                       TextButton(
 
                         onPressed: () {
 
                           setState(() {
-                            tumTanımlar = true;
+
+                            tumTanimlar = true;
+
                           });
 
                         },
@@ -203,6 +223,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         ),
 
                       ),
+
 
                   ],
 
@@ -223,12 +244,21 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
               onPressed: yeniKelime,
 
-              icon: const Icon(Icons.refresh),
+              icon: const Icon(
+                Icons.refresh,
+              ),
 
               label: const Text(
                 "Yeni Kelime",
                 style: TextStyle(
                   fontSize:18,
+                ),
+              ),
+
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.symmetric(
+                  horizontal:40,
+                  vertical:15,
                 ),
               ),
 
@@ -246,4 +276,5 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
 
   }
+
 }

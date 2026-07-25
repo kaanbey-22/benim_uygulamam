@@ -33,10 +33,9 @@ class AnaSayfa extends StatefulWidget {
 class _AnaSayfaState extends State<AnaSayfa> {
 
   final List<Map<String, dynamic>> kelimeler = [
-
     {
       "kelime": "SENATO",
-      "tanim": [
+      "tanimlar": [
         "Bazı ülkelerde yasama organının üst kanadı olarak görev yapan meclis.",
         "İki meclisli parlamentolarda üst meclis olarak görev yapan yasama organı."
       ]
@@ -44,23 +43,27 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
     {
       "kelime": "DEMOKRASİ",
-      "tanım": [
-        "Halkın egemenliğine dayanan yönetim biçimi.",
-        "Vatandaşların yönetime katılmasını esas alan sistem."
+      "tanimlar": [
+        "Halkın yönetime katıldığı yönetim biçimi.",
+        "Vatandaşların siyasi haklara sahip olduğu sistem."
       ]
     },
 
     {
       "kelime": "GALAKSİ",
-      "tanım": [
-        "Milyarlarca yıldız, gaz ve tozdan oluşan büyük uzay sistemi."
+      "tanimlar": [
+        "Milyarlarca yıldız, gaz ve tozdan oluşan büyük uzay sistemi.",
+        "Evren içinde bulunan dev yıldız topluluklarından biri."
       ]
     },
-
   ];
+
 
   String kelime = "";
   List<String> tanimlar = [];
+
+  bool tumTanımlar = false;
+
 
   @override
   void initState() {
@@ -71,15 +74,18 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
   void yeniKelime() {
 
-    final secilen = kelimeler[
-      Random().nextInt(kelimeler.length)
-    ];
+    final secilen =
+    kelimeler[Random().nextInt(kelimeler.length)];
 
     setState(() {
+
       kelime = secilen["kelime"];
-      tanimlar = List<String>.from(
-        secilen["tanim"] ?? secilen["tanım"]
-      );
+
+      tanimlar =
+      List<String>.from(secilen["tanimlar"]);
+
+      tumTanımlar = false;
+
     });
   }
 
@@ -106,9 +112,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
 
             Card(
+
               elevation:5,
 
               child: Padding(
+
                 padding: const EdgeInsets.all(25),
 
                 child: Column(
@@ -118,13 +126,13 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Text(
                       "📌 $kelime",
                       style: const TextStyle(
-                        fontSize:32,
+                        fontSize:30,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
 
 
-                    const SizedBox(height:30),
+                    const SizedBox(height:25),
 
 
                     const Text(
@@ -139,24 +147,62 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     const SizedBox(height:15),
 
 
-                    ...List.generate(
-                      tanimlar.length,
-                      (index){
+                    if (!tumTanımlar)
+                      Text(
+                        tanimlar[0],
+                        style: const TextStyle(
+                          fontSize:17,
+                        ),
+                      ),
 
-                        return Padding(
-                          padding:
-                          const EdgeInsets.only(bottom:10),
 
-                          child: Text(
-                            "${index+1}. ${tanimlar[index]}",
-                            style: const TextStyle(
-                              fontSize:17,
+                    if (tumTanımlar)
+
+                      ...List.generate(
+                        tanimlar.length,
+                            (index) {
+
+                          return Padding(
+
+                            padding:
+                            const EdgeInsets.only(bottom:10),
+
+                            child: Text(
+                              "${index+1}. ${tanimlar[index]}",
+                              style: const TextStyle(
+                                fontSize:17,
+                              ),
                             ),
-                          ),
-                        );
 
-                      },
-                    ),
+                          );
+
+                        },
+                      ),
+
+
+                    const SizedBox(height:20),
+
+
+                    if (!tumTanımlar && tanimlar.length > 1)
+
+                      TextButton(
+
+                        onPressed: () {
+
+                          setState(() {
+                            tumTanımlar = true;
+                          });
+
+                        },
+
+                        child: const Text(
+                          "➕ Bir Tanım Daha",
+                          style: TextStyle(
+                            fontSize:17,
+                          ),
+                        ),
+
+                      ),
 
                   ],
 
@@ -177,21 +223,12 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
               onPressed: yeniKelime,
 
-              icon: const Icon(
-                Icons.refresh,
-              ),
+              icon: const Icon(Icons.refresh),
 
               label: const Text(
                 "Yeni Kelime",
                 style: TextStyle(
                   fontSize:18,
-                ),
-              ),
-
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal:40,
-                  vertical:15,
                 ),
               ),
 
@@ -209,5 +246,4 @@ class _AnaSayfaState extends State<AnaSayfa> {
     );
 
   }
-
 }

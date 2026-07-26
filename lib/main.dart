@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'data/kelimeler.dart';
 
 void main() {
   runApp(const KelimeAvi());
@@ -32,39 +33,8 @@ class AnaSayfa extends StatefulWidget {
 
 class _AnaSayfaState extends State<AnaSayfa> {
 
-  final List<Map<String, dynamic>> kelimeler = [
-
-    {
-      "kelime": "SENATO",
-      "zorluk": "Zor",
-      "tanimlar": [
-        "Bazı ülkelerde yasama organının üst kanadı olarak görev yapan meclis.",
-        "İki meclisli parlamentolarda üst meclis olarak görev yapan yasama organı."
-      ]
-    },
-
-    {
-      "kelime": "DEMOKRASİ",
-      "zorluk": "Orta",
-      "tanimlar": [
-        "Halkın yönetime katıldığı yönetim biçimi.",
-        "Vatandaşların siyasi haklara sahip olduğu sistem."
-      ]
-    },
-
-    {
-      "kelime": "GALAKSİ",
-      "zorluk": "Zor",
-      "tanimlar": [
-        "Milyarlarca yıldız, gaz ve tozdan oluşan büyük uzay sistemi.",
-        "Uzayda bulunan büyük yıldız topluluklarından biri."
-      ]
-    },
-
-  ];
-
-
   String kelime = "";
+  String kategori = "";
   String zorluk = "";
   List<String> tanimlar = [];
 
@@ -81,21 +51,24 @@ class _AnaSayfaState extends State<AnaSayfa> {
   void yeniKelime() {
 
     final secilen =
-    kelimeler[Random().nextInt(kelimeler.length)];
+        kelimeler[Random().nextInt(kelimeler.length)];
 
     setState(() {
 
       kelime = secilen["kelime"];
+      kategori = secilen["kategori"];
       zorluk = secilen["zorluk"];
 
       tanimlar =
-      List<String>.from(secilen["tanimlar"]);
+          List<String>.from(secilen["tanimlar"]);
 
       tumTanimlar = false;
 
     });
 
   }
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -106,16 +79,13 @@ class _AnaSayfaState extends State<AnaSayfa> {
         centerTitle: true,
       ),
 
-
       body: Padding(
         padding: const EdgeInsets.all(20),
 
         child: Column(
 
           children: [
-
             const SizedBox(height:30),
-
 
             Card(
               elevation:5,
@@ -135,9 +105,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     ),
 
-
                     const SizedBox(height:10),
-
 
                     Text(
                       "🎯 Zorluk: $zorluk",
@@ -146,9 +114,16 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     ),
 
+                    const SizedBox(height:10),
+
+                    Text(
+                      "🏷️ Kategori: $kategori",
+                      style: const TextStyle(
+                        fontSize:16,
+                      ),
+                    ),
 
                     const SizedBox(height:25),
-
 
                     const Text(
                       "📝 Tanım",
@@ -158,12 +133,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
                     ),
 
-
                     const SizedBox(height:15),
 
-
                     if (!tumTanimlar)
-
                       Text(
                         tanimlar[0],
                         style: const TextStyle(
@@ -172,17 +144,13 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         textAlign: TextAlign.center,
                       ),
 
-
                     if (tumTanimlar)
-
                       ...List.generate(
                         tanimlar.length,
                         (index) {
-
                           return Padding(
-
                             padding:
-                            const EdgeInsets.only(bottom:12),
+                                const EdgeInsets.only(bottom:12),
 
                             child: Text(
                               "${index + 1}. ${tanimlar[index]}",
@@ -191,15 +159,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
                               ),
                               textAlign: TextAlign.center,
                             ),
-
                           );
-
                         },
                       ),
 
-
                     const SizedBox(height:20),
-
 
                     if (!tumTanimlar && tanimlar.length > 1)
 
@@ -208,9 +172,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                         onPressed: () {
 
                           setState(() {
-
                             tumTanimlar = true;
-
                           });
 
                         },
@@ -224,21 +186,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
                       ),
 
-
                   ],
-
                 ),
-
               ),
-
             ),
-
 
             const Spacer(),
 
-
             const Divider(),
-
 
             ElevatedButton.icon(
 
@@ -264,17 +219,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
             ),
 
-
             const SizedBox(height:20),
 
           ],
-
         ),
-
       ),
-
     );
-
   }
-
 }

@@ -1,4 +1,4 @@
-+final List<Map<String, dynamic>> kelimeler = [
+final List<Map<String, dynamic>> kelimeler = [
   {
     "kelime": "SENATO",
     "kategori": "Siyaset",

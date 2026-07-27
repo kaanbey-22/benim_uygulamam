@@ -191,11 +191,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
               ),
             ),
 
-            const Spacer(),
+            const SizedBox(height: 25),
 
-            const Divider(),
-
-            ElevatedButton.icon(
+ElevatedButton.icon(
 
               onPressed: yeniKelime,
 

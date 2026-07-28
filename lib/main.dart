@@ -265,7 +265,6 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 ),
               ),
             ),
-          ),
             const SizedBox(height: 25),
 
 ElevatedButton.icon(

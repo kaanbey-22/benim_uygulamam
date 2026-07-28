@@ -11,7 +11,7 @@ class KelimeAvi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialQ App(
       debugShowCheckedModeBanner: false,
       title: "Kelime Avı",
       theme: ThemeData(
@@ -87,7 +87,22 @@ class _AnaSayfaState extends State<AnaSayfa> {
           children: [
             const SizedBox(height:30),
 
-            Card(
+            AnimatedSwitcher(
+              duration: const Duration(milliseconds: 350),
+              transitionBuilder: (child, animation) {
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(0.3, 0),
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  ),
+                );
+              },
+              child: Card(
+                key: ValueKey(kelime),
   elevation: 12,
   shadowColor: Colors.black26,
   shape: RoundedRectangleBorder(

@@ -73,8 +73,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-
-      appBar: AppBar(
+  backgroundColor: Colors.indigo.shade50,
+  appBar: AppBar(
         title: const Text("Kelime Avı"),
         centerTitle: true,
       ),
@@ -102,15 +102,13 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 );
               },
               child: Card(
-                key: ValueKey(kelime),
-  elevation: 12,
+  key: ValueKey(kelime),
+  elevation: 8,
+  color: Colors.white,
   shadowColor: Colors.black26,
   shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(20),
+    borderRadius: BorderRadius.circular(25),
   ),
-
-  child: Padding(
-                padding: const EdgeInsets.all(25),
 
                 child: Column(
 
@@ -135,38 +133,72 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     Text(
                       "📌 $kelime",
                       style: const TextStyle(
-                        fontSize:30,
+                        fontSize:32,
                         fontWeight: FontWeight.bold,
+                        color: Colors.indigo,
                       ),
                     ),
 
                     const SizedBox(height:10),
 
-                    Text(
-                      "🎯 Zorluk: $zorluk",
-                      style: const TextStyle(
-                        fontSize:16,
-                      ),
-                    ),
+                    Container(
+  padding: const EdgeInsets.symmetric(
+    horizontal: 15,
+    vertical: 8,
+  ),
+  decoration: BoxDecoration(
+    color: Colors.indigo.shade50,
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Text(
+    "🎯 Zorluk: $zorluk",
+    style: const TextStyle(
+      fontSize:16,
+      fontWeight: FontWeight.w600,
+    ),
+  ),
+),
 
                     const SizedBox(height:10),
 
-                    Text(
-                      "🏷️ Kategori: $kategori",
-                      style: const TextStyle(
-                        fontSize:16,
-                      ),
-                    ),
+                    Container(
+  padding: const EdgeInsets.symmetric(
+    horizontal: 15,
+    vertical: 8,
+  ),
+  decoration: BoxDecoration(
+    color: Colors.indigo.shade50,
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: Text(
+    "🏷️ Kategori: $kategori",
+    style: const TextStyle(
+      fontSize:16,
+      fontWeight: FontWeight.w600,
+    ),
+  ),
+),
 
                     const SizedBox(height:25),
 
-                    const Text(
-                      "📝 Tanım",
-                      style: TextStyle(
-                        fontSize:22,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
+                    Container(
+  padding: const EdgeInsets.symmetric(
+    horizontal: 15,
+    vertical: 8,
+  ),
+  decoration: BoxDecoration(
+    color: Colors.indigo,
+    borderRadius: BorderRadius.circular(12),
+  ),
+  child: const Text(
+    "📝 Tanım",
+    style: TextStyle(
+      fontSize:22,
+      fontWeight: FontWeight.bold,
+      color: Colors.white,
+    ),
+  ),
+),
 
                     const SizedBox(height:15),
 
@@ -199,27 +231,35 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       ),
 
                     const SizedBox(height:20),
+                       ElevatedButton.icon(
+  onPressed: () {
 
-                    if (!tumTanimlar && tanimlar.length > 1)
+    setState(() {
+      tumTanimlar = true;
+    });
 
-                      TextButton(
+  },
 
-                        onPressed: () {
+  icon: const Icon(
+    Icons.lightbulb_outline,
+  ),
 
-                          setState(() {
-                            tumTanimlar = true;
-                          });
+  label: const Text(
+    "İpucu Göster",
+    style: TextStyle(
+      fontSize:17,
+    ),
+  ),
 
-                        },
-
-                        child: const Text(
-                          "➕ Bir Tanım Daha",
-                          style: TextStyle(
-                            fontSize:17,
-                          ),
-                        ),
-
-                      ),
+  style: ElevatedButton.styleFrom(
+    backgroundColor: Colors.indigo.shade50,
+    foregroundColor: Colors.indigo,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(15),
+    ),
+  ),
+),
+                    
 
                                     ],
                 ),
@@ -244,11 +284,16 @@ ElevatedButton.icon(
               ),
 
               style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.symmetric(
-                  horizontal:40,
-                  vertical:15,
-                ),
-              ),
+  backgroundColor: Colors.indigo,
+  foregroundColor: Colors.white,
+  padding: const EdgeInsets.symmetric(
+    horizontal:40,
+    vertical:15,
+  ),
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(15),
+  ),
+),
 
             ),
 

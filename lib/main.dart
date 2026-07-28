@@ -88,11 +88,11 @@ class _AnaSayfaState extends State<AnaSayfa> {
             const SizedBox(height:30),
 
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 350),
+              duration: const Duration(milliseconds: 500),
               transitionBuilder: (child, animation) {
                 return SlideTransition(
                   position: Tween<Offset>(
-                    begin: const Offset(0.3, 0),
+                    begin: const Offset(1.0, 0),
                     end: Offset.zero,
                   ).animate(animation),
                   child: FadeTransition(

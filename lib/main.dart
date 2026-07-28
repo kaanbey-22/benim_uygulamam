@@ -88,14 +88,34 @@ class _AnaSayfaState extends State<AnaSayfa> {
             const SizedBox(height:30),
 
             Card(
-              elevation:5,
+  elevation: 12,
+  shadowColor: Colors.black26,
+  shape: RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(20),
+  ),
 
-              child: Padding(
+  child: Padding(
                 padding: const EdgeInsets.all(25),
 
                 child: Column(
 
-                  children: [
+  crossAxisAlignment: CrossAxisAlignment.center,
+
+  children: [
+
+    Container(
+  height: 6,
+  width: double.infinity,
+  decoration: const BoxDecoration(
+    color: Colors.indigo,
+    borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(20),
+      topRight: Radius.circular(20),
+    ),
+  ),
+),
+
+    const SizedBox(height: 20),
 
                     Text(
                       "📌 $kelime",

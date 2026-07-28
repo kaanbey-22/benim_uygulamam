@@ -11,7 +11,7 @@ class KelimeAvi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialQ App(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Kelime Avı",
       theme: ThemeData(
@@ -225,7 +225,6 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 ),
               ),
             ),
-
             const SizedBox(height: 25),
 
 ElevatedButton.icon(

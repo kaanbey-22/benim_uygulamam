@@ -73,11 +73,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-  backgroundColor: Colors.indigo.shade50,
+  backgroundColor: Colors.black,
   appBar: AppBar(
-        title: const Text("Kelime Avı"),
-        centerTitle: true,
-      ),
+  backgroundColor: Colors.white,
+  foregroundColor: Colors.black,
+  elevation: 0,
+  title: const Text("Kelime Avı"),
+  centerTitle: true,
+),
 
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -120,7 +123,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
   height: 6,
   width: double.infinity,
   decoration: const BoxDecoration(
-    color: Colors.indigo,
+    color: Colors.black,
     borderRadius: BorderRadius.only(
       topLeft: Radius.circular(20),
       topRight: Radius.circular(20),
@@ -135,29 +138,12 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       style: const TextStyle(
                         fontSize:32,
                         fontWeight: FontWeight.bold,
-                        color: Colors.indigo,
+                        color: Colors.black,
                       ),
                     ),
 
                     const SizedBox(height:10),
 
-                    Container(
-  padding: const EdgeInsets.symmetric(
-    horizontal: 15,
-    vertical: 8,
-  ),
-  decoration: BoxDecoration(
-    color: Colors.indigo.shade50,
-    borderRadius: BorderRadius.circular(12),
-  ),
-  child: Text(
-    "🎯 Zorluk: $zorluk",
-    style: const TextStyle(
-      fontSize:16,
-      fontWeight: FontWeight.w600,
-    ),
-  ),
-),
 
                     const SizedBox(height:10),
 
@@ -167,7 +153,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     vertical: 8,
   ),
   decoration: BoxDecoration(
-    color: Colors.indigo.shade50,
+    color: Colors.white,
     borderRadius: BorderRadius.circular(12),
   ),
   child: Text(
@@ -175,6 +161,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     style: const TextStyle(
       fontSize:16,
       fontWeight: FontWeight.w600,
+      color: Colors.black,
     ),
   ),
 ),

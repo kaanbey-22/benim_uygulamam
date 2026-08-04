@@ -144,10 +144,9 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
                     const SizedBox(height:10),
 
-
-                    const SizedBox(height:10),
-
-                    Container(
+                    Align(
+  alignment: Alignment.centerLeft,
+  child: Container(
   padding: const EdgeInsets.symmetric(
     horizontal: 15,
     vertical: 8,
@@ -165,7 +164,8 @@ class _AnaSayfaState extends State<AnaSayfa> {
     ),
   ),
 ),
-
+  ),
+),
                     const SizedBox(height:25),
 
                     Container(
@@ -174,7 +174,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     vertical: 8,
   ),
   decoration: BoxDecoration(
-    color: Colors.indigo,
+    color: Colors.white,
     borderRadius: BorderRadius.circular(12),
   ),
   child: const Text(
@@ -182,7 +182,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     style: TextStyle(
       fontSize:22,
       fontWeight: FontWeight.bold,
-      color: Colors.white,
+      color: Colors.black,
     ),
   ),
 ),

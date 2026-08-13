@@ -51,10 +51,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
     setState(() {
       kelime = secilen["kelime"];
       kategori = secilen["kategori"];
-
-      tanimlar =
-          List<String>.from(secilen["tanimlar"]);
-
+      tanimlar = List<String>.from(secilen["tanimlar"]);
       tumTanimlar = false;
     });
   }
@@ -107,8 +104,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
                 ),
 
                 child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
 
                   children: [
                     Container(
@@ -117,9 +113,7 @@ class _AnaSayfaState extends State<AnaSayfa> {
 
                       decoration: const BoxDecoration(
                         color: Colors.black,
-
-                        borderRadius:
-                            BorderRadius.only(
+                        borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20),
                           topRight: Radius.circular(20),
                         ),
@@ -132,16 +126,14 @@ class _AnaSayfaState extends State<AnaSayfa> {
                       alignment: Alignment.centerLeft,
 
                       child: Container(
-                        padding:
-                            const EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                           horizontal: 15,
                           vertical: 8,
                         ),
 
                         decoration: BoxDecoration(
                           color: Colors.white,
-                          borderRadius:
-                              BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(12),
                         ),
 
                         child: Text(
@@ -169,23 +161,17 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     ),
 
                     const SizedBox(height: 25),
-
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         horizontal: 15,
                         vertical: 8,
                       ),
-
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius:
-                            BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(12),
                       ),
-
                       child: const Text(
                         "📝 Tanım",
-
                         style: TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -199,19 +185,88 @@ class _AnaSayfaState extends State<AnaSayfa> {
                     if (!tumTanimlar)
                       Text(
                         tanimlar[0],
-
                         style: const TextStyle(
                           fontSize: 17,
                           color: Colors.black,
                         ),
-
                         textAlign: TextAlign.center,
                       ),
 
                     if (tumTanimlar)
-                      ...List.generate(
-                        tanimlar.length,
-                        (index) {
-                          return Padding(
-                            padding:
-                                const EdgeInsets
+                      Column(
+                        children: List.generate(
+                          tanimlar.length,
+                          (index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                bottom: 12,
+                              ),
+                              child: Text(
+                                "${index + 1}. ${tanimlar[index]}",
+                                style: const TextStyle(
+                                  fontSize: 17,
+                                  color: Colors.black,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+
+                    const SizedBox(height: 20),
+
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        setState(() {
+                          tumTanimlar = true;
+                        });
+                      },
+                      icon: const Icon(
+                        Icons.lightbulb_outline,
+                      ),
+                      label: const Text(
+                        "İpucu Göster",
+                        style: TextStyle(
+                          fontSize: 17,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo.shade50,
+                        foregroundColor: Colors.indigo,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                      ),
+                    ),
+
+                    const SizedBox(height: 20),
+            ElevatedButton.icon(
+              onPressed: yeniKelime,
+              icon: const Icon(Icons.refresh),
+              label: const Text(
+                "Yeni Kelime",
+                style: TextStyle(
+                  fontSize: 18,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.indigo,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 40,
+                  vertical: 15,
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 20),
+          ],
+        ),
+      ),
+    );
+  }
+}
